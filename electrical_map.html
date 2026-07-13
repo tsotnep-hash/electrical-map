@@ -103,7 +103,8 @@
       <label>Status:</label>
       <select id="statusFilter">
         <option value="all">All</option>
-        <option value="Booked">Booked (all except Lost)</option>
+        <option value="Booked">Booked (excl. Lost)</option>
+        <option value="BookedNoCancel">Booked (excl. Lost &amp; Canceled)</option>
         <option value="Lost">Lost</option>
         <option value="Canceled">Canceled</option>
       </select>
@@ -336,6 +337,7 @@ function statusMatch(sel, status){
   if(sel==='Lost') return s==='lost';
   if(sel==='Canceled') return s==='canceled' || s==='cancelled';
   if(sel==='Booked') return s!=='lost';   // all except Lost
+  if(sel==='BookedNoCancel') return s!=='lost' && s!=='canceled' && s!=='cancelled';   // excl. Lost & Canceled
   return true;
 }
 
